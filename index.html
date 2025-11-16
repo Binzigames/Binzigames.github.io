@@ -28,6 +28,9 @@
     const content = {
       uk: {
         title: `CV — Game Composer — Єгор "Porko" Коваленко`,
+        contacts: "Контакти",
+        skills: "Навички",
+        aboutTitle: "Про мене",
         about:`Мене звуть Єгор (Porko_dev). Я композитор та розробник з Києва з понад 4 роками досвіду в GameDev. Починав як Unity‑розробник, а з часом занурився у створення музики та гру на гітарі. Хочу розвивати український GameDev і готовий зробити це на вашому проєкті!`,
         experience:`Досвід та проєкти`,
         expList:`<li><strong>Composer / Producer</strong> — Freelance (2021–зараз)<br>Музика для ігор, реклами та відео.</li>
@@ -35,12 +38,15 @@
         <li><strong>Fingertip Mahjong</strong> — (2025)<br><a href='#'>Ambient OST для мобільного проєкту</a></li>
         <li><strong>Bossfish</strong> — (2025)<br><a href='#'>Boss‑fight OST для інді гри</a></li>
         <li><strong>Throw It Into a Big Hole</strong> — (2025)<br><a href='#'>Space‑ambient для Jam‑проєкту</a></li>
-        <li><strong>Who Am I</strong> — (2025)<br><a href='#'>Альбом для портфоліо</a></li>` ,
+        <li><strong>Who Am I</strong> — (2025)<br><a href='#'>Альбом для портфоліо</a></li>`,
         education:`Освіта`,
         eduList:`<li>Музична школа (3 роки)</li>`
       },
       en: {
         title:`CV — Game Composer — Yehor "Porko" Kovalenko`,
+        contacts: "Contacts",
+        skills: "Skills",
+        aboutTitle: "About Me",
         about:`My name is Yehor (Porko_dev). I'm a composer and developer from Kyiv with over 4 years of experience in GameDev. I started as a Unity developer and later moved into music production and guitar performance. My goal is to strengthen the Ukrainian GameDev industry — and I’m ready to do it on your project!`,
         experience:`Experience & Projects`,
         expList:`<li><strong>Composer / Producer</strong> — Freelance (2021–present)<br>Music for games, ads, and video content.</li>
@@ -48,7 +54,7 @@
         <li><strong>Fingertip Mahjong</strong> — (2025)<br><a href='#'>Ambient soundtrack for a mobile game</a></li>
         <li><strong>Bossfish</strong> — (2025)<br><a href='#'>Boss‑fight OST for an indie project</a></li>
         <li><strong>Throw It Into a Big Hole</strong> — (2025)<br><a href='#'>Space‑ambient OST for a game‑jam title</a></li>
-        <li><strong>Who Am I</strong> — (2025)<br><a href='#'>Music album for portfolio</a></li>` ,
+        <li><strong>Who Am I</strong> — (2025)<br><a href='#'>Music album for portfolio</a></li>`,
         education:`Education`,
         eduList:`<li>Music School (3 years)</li>`
       }
@@ -56,6 +62,9 @@
 
     function setLang(l){
       document.querySelector('h1').innerText = content[l].title;
+      document.querySelector('#contacts-title').innerText = content[l].contacts;
+      document.querySelector('#skills-title').innerText = content[l].skills;
+      document.querySelector('#about-title').innerText = content[l].aboutTitle;
       document.querySelector('#about').innerHTML = content[l].about;
       document.querySelector('#exp-title').innerText = content[l].experience;
       document.querySelector('#exp-list').innerHTML = content[l].expList;
@@ -79,17 +88,16 @@
   <div class="container">
     <div>
       <div class="card photo">
-        <!-- Постав свій аватар тут -->
         <img src="avatar.jpg" alt="Yehor Porko Kovalenko">
       </div>
 
       <div class="card" style="margin-top:20px;">
-        <h2>Контакти</h2>
+        <h2 id="contacts-title"></h2>
         <p>Gmail: porko.dev.ua@gmail.com<br>Discord: @proko_games<br>City: Київ</p>
       </div>
 
       <div class="card" style="margin-top:20px;">
-        <h2>Навички</h2>
+        <h2 id="skills-title"></h2>
         <div>
           <span class="tag">Composition</span>
           <span class="tag">Mixing</span>
@@ -101,7 +109,7 @@
     </div>
 
     <div class="card">
-      <h2>Про мене</h2>
+      <h2 id="about-title"></h2>
       <p id="about"></p>
 
       <h2 id="exp-title"></h2>
