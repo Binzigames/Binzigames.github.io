@@ -3,23 +3,113 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CV — Ім'я Прізвище | Composer</title>
+  <title>CV — Yehor "Porko" Kovalenko | Game Composer</title>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
   <style>
     :root{--accent:#ff476f;--accent-2:#21d4fd;--bg:#0f0f13;--card:#111217;--muted:#bfc3c8;}
-    *{box-sizing:border-box}html,body{height:100%}body{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:radial-gradient(circle at 10% 10%,rgba(255,71,111,0.12),transparent 8%),radial-gradient(circle at 90% 80%,rgba(33,212,253,0.08),transparent 12%),linear-gradient(180deg,#0b0b0d 0%,#121216 100%);color:#e9eef6;-webkit-font-smoothing:antialiased;padding:40px;}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;background:radial-gradient(circle at 10% 10%,rgba(255,71,111,0.12),transparent 8%),radial-gradient(circle at 90% 80%,rgba(33,212,253,0.08),transparent 12%),linear-gradient(180deg,#0b0b0d 0%,#121216 100%);color:#e9eef6;padding:40px;}
     .spray{position:fixed;left:10%;top:5%;width:220px;height:220px;filter:blur(8px);opacity:0.14;pointer-events:none;background:radial-gradient(circle at 30% 30%, rgba(255,71,111,0.9), transparent 25%), radial-gradient(circle at 70% 80%, rgba(33,212,253,0.9), transparent 20%);mix-blend-mode:screen}
     .spray.r2{left:auto;right:8%;top:60%;width:260px;height:260px;opacity:0.12}
-    .container{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:start;}
+    .container{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start;}
     .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);padding:22px;border-radius:14px;backdrop-filter:blur(6px);box-shadow:0 6px 24px rgba(2,6,23,0.6);}
-    .photo{width:100%;height:320px;border-radius:10px;overflow:hidden;position:relative;background:linear-gradient(45deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;font-family:'Bangers',cursive;font-size:34px;color:#07101a}
-    .photo::after{content:"PHOTO";opacity:0.08;position:absolute;font-size:120px}
+    .photo{width:100%;height:340px;border-radius:10px;overflow:hidden;position:relative;background:#05070a;display:flex;align-items:center;justify-content:center;font-family:'Bangers',cursive;font-size:34px;color:#07101a}
+    .photo img{width:100%;height:100%;object-fit:cover;}
+    .photo.placeholder::after{content:"ADD PHOTO";opacity:0.1;position:absolute;font-size:110px}
+    h1{font-family:'Bangers',cursive;font-size:48px;margin-bottom:30px;color:var(--accent-2);}
+    h2{font-family:'Bangers',cursive;font-size:32px;margin:0 0 14px;color:var(--accent-2);letter-spacing:1px}
+    ul{padding-left:18px;margin:0 0 10px}
+    .tag{display:inline-block;background:rgba(255,255,255,0.08);padding:4px 10px;border-radius:6px;margin:3px 4px;font-size:13px}
+    .lang-switch{margin-bottom:20px;}
+    .lang-switch button{background:var(--accent);border:none;padding:8px 14px;margin-right:8px;border-radius:6px;color:white;font-weight:600;cursor:pointer}
   </style>
+  <script>
+    const content = {
+      uk: {
+        title: `CV — Game Composer — Єгор "Porko" Коваленко`,
+        about:`Мене звуть Єгор (Porko_dev). Я композитор та розробник з Києва з понад 4 роками досвіду в GameDev. Починав як Unity‑розробник, а з часом занурився у створення музики та гру на гітарі. Хочу розвивати український GameDev і готовий зробити це на вашому проєкті!`,
+        experience:`Досвід та проєкти`,
+        expList:`<li><strong>Composer / Producer</strong> — Freelance (2021–зараз)<br>Музика для ігор, реклами та відео.</li>
+        <li><strong>Rust Born</strong> — (2024–зараз)<br><a href='#'>Ambient OST для власної гри</a></li>
+        <li><strong>Fingertip Mahjong</strong> — (2025)<br><a href='#'>Ambient OST для мобільного проєкту</a></li>
+        <li><strong>Bossfish</strong> — (2025)<br><a href='#'>Boss‑fight OST для інді гри</a></li>
+        <li><strong>Throw It Into a Big Hole</strong> — (2025)<br><a href='#'>Space‑ambient для Jam‑проєкту</a></li>
+        <li><strong>Who Am I</strong> — (2025)<br><a href='#'>Альбом для портфоліо</a></li>` ,
+        education:`Освіта`,
+        eduList:`<li>Музична школа (3 роки)</li>`
+      },
+      en: {
+        title:`CV — Game Composer — Yehor "Porko" Kovalenko`,
+        about:`My name is Yehor (Porko_dev). I'm a composer and developer from Kyiv with over 4 years of experience in GameDev. I started as a Unity developer and later moved into music production and guitar performance. My goal is to strengthen the Ukrainian GameDev industry — and I’m ready to do it on your project!`,
+        experience:`Experience & Projects`,
+        expList:`<li><strong>Composer / Producer</strong> — Freelance (2021–present)<br>Music for games, ads, and video content.</li>
+        <li><strong>Rust Born</strong> — (2024–present)<br><a href='#'>Ambient OST for my personal game project</a></li>
+        <li><strong>Fingertip Mahjong</strong> — (2025)<br><a href='#'>Ambient soundtrack for a mobile game</a></li>
+        <li><strong>Bossfish</strong> — (2025)<br><a href='#'>Boss‑fight OST for an indie project</a></li>
+        <li><strong>Throw It Into a Big Hole</strong> — (2025)<br><a href='#'>Space‑ambient OST for a game‑jam title</a></li>
+        <li><strong>Who Am I</strong> — (2025)<br><a href='#'>Music album for portfolio</a></li>` ,
+        education:`Education`,
+        eduList:`<li>Music School (3 years)</li>`
+      }
+    };
+
+    function setLang(l){
+      document.querySelector('h1').innerText = content[l].title;
+      document.querySelector('#about').innerHTML = content[l].about;
+      document.querySelector('#exp-title').innerText = content[l].experience;
+      document.querySelector('#exp-list').innerHTML = content[l].expList;
+      document.querySelector('#edu-title').innerText = content[l].education;
+      document.querySelector('#edu-list').innerHTML = content[l].eduList;
+    }
+  </script>
 </head>
-<body>
+<body onload="setLang('uk')">
+
   <div class="spray"></div>
   <div class="spray r2"></div>
-  <h1 style="font-family:'Bangers',cursive;font-size:48px;">CV Composer — Street‑Art Style</h1>
-  <p style="max-width:600px;">Готовий мінімальний проєкт. Можеш закидати у GitHub Pages.</p>
+
+  <div class="lang-switch">
+    <button onclick="setLang('uk')">Українська</button>
+    <button onclick="setLang('en')">English</button>
+  </div>
+
+  <h1></h1>
+
+  <div class="container">
+    <div>
+      <div class="card photo">
+        <!-- Постав свій аватар тут -->
+        <img src="avatar.jpg" alt="Yehor Porko Kovalenko">
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h2>Контакти</h2>
+        <p>Gmail: porko.dev.ua@gmail.com<br>Discord: @proko_games<br>City: Київ</p>
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h2>Навички</h2>
+        <div>
+          <span class="tag">Composition</span>
+          <span class="tag">Mixing</span>
+          <span class="tag">Mastering</span>
+          <span class="tag">Guitar / MIDI Recording</span>
+          <span class="tag">Ableton Live 12 Lite</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Про мене</h2>
+      <p id="about"></p>
+
+      <h2 id="exp-title"></h2>
+      <ul id="exp-list"></ul>
+
+      <h2 id="edu-title"></h2>
+      <ul id="edu-list"></ul>
+    </div>
+  </div>
 </body>
 </html>
