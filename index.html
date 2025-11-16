@@ -15,14 +15,18 @@
       --neon-shadow: 0 0 6px var(--accent), 0 0 10px var(--accent-2);
     }
 
-    *{box-sizing:border-box}
-    html, body{height:100%; margin:0; font-family:'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#0f0f13; color:#e9eef6; padding:40px; overflow-x:hidden;}
-    body{background:radial-gradient(circle at 10% 10%,rgba(255,71,111,0.12),transparent 8%),radial-gradient(circle at 90% 80%,rgba(33,212,253,0.08),transparent 12%),linear-gradient(180deg,#0b0b0d 0%,#121216 100%);}
+    *{box-sizing:border-box;}
+    html, body{height:100%; margin:0; font-family:'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#0f0f13; color:#e9eef6; padding:40px; overflow-x:hidden; position:relative;}
 
-    .spray{position:fixed;left:10%;top:5%;width:220px;height:220px;filter:blur(12px);opacity:0.15;pointer-events:none;background:radial-gradient(circle at 30% 30%, rgba(255,71,111,0.9), transparent 25%), radial-gradient(circle at 70% 80%, rgba(33,212,253,0.9), transparent 20%);mix-blend-mode:screen}
-    .spray.r2{left:auto;right:8%;top:60%;width:260px;height:260px;opacity:0.12}
+    body {
+      background:radial-gradient(circle at 10% 10%,rgba(255,71,111,0.12),transparent 8%),
+                 radial-gradient(circle at 90% 80%,rgba(33,212,253,0.08),transparent 12%),
+                 linear-gradient(180deg,#0b0b0d 0%,#121216 100%);
+    }
 
-    .container{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start;}
+    canvas { position: fixed; top:0; left:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+
+    .container{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start;position:relative; z-index:1;}
 
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
@@ -116,12 +120,60 @@
       document.querySelector('#edu-title').innerText = content[l].education;
       document.querySelector('#edu-list').innerHTML = content[l].eduList;
     }
+
+    const particles = [];
+    const particleCount = 60;
+
+    function initParticles() {
+      const canvas = document.getElementById("bg-canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      for(let i=0; i<particleCount; i++){
+        particles.push({
+          x: Math.random()*canvas.width,
+          y: Math.random()*canvas.height,
+          r: Math.random()*20+10, // розмір нотки
+          dx: (Math.random()-0.5)*0.5,
+          dy: (Math.random()-0.5)*0.5,
+          color: Math.random()>0.5?'#ff476f':'#21d4fd',
+          char: "♪"
+        });
+      }
+
+      function animate(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+        particles.forEach(p=>{
+          p.x += p.dx;
+          p.y += p.dy;
+          if(p.x<0) p.x = canvas.width;
+          if(p.x>canvas.width) p.x = 0;
+          if(p.y<0) p.y = canvas.height;
+          if(p.y>canvas.height) p.y = 0;
+          ctx.font = `${p.r}px Bangers, sans-serif`;
+          ctx.fillStyle = p.color;
+          ctx.fillText(p.char, p.x, p.y);
+        });
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
+    window.onload = function(){
+      setLang('uk');
+      initParticles();
+    }
+
+    window.onresize = function(){
+      const canvas = document.getElementById("bg-canvas");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
   </script>
 </head>
-<body onload="setLang('uk')">
-
-  <div class="spray"></div>
-  <div class="spray r2"></div>
+<body>
+  <canvas id="bg-canvas"></canvas>
 
   <div class="lang-switch">
     <button onclick="setLang('uk')">Українська</button>
@@ -166,4 +218,3 @@
   </div>
 </body>
 </html>
- 
